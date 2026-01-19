@@ -4,7 +4,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Lets get the api key from the environment
 
-gemini_api_key = os.getenv('Google_API_Key')
+gemini_api_key = os.getenv('GOOGLE_API_KEY1')
 
 # Lets configure the model:
 
