@@ -1,4 +1,5 @@
 import os 
+import pandas as pd
 import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI 
 
@@ -16,16 +17,16 @@ model = ChatGoogleGenerativeAI(
 
 # Design the UI of application:
 
-st.title('healthyfyme your personal AI assistant')
+st.title('HealthifyMe: Your Personal AI Assistant')
 st.markdown('''
 This application will assist you to get better and customized
-Health advice. You can ask you have health related issues and get the personalized guidance''')
+Health advice. You can ask you have health related issues and get the personalized guidance.''')
 
 # Design the sidebar for all the user parameters:
 
 st.sidebar.header(':red[ENTER YOUR DETAILS]')
 name = st.sidebar.text_input('Enter your name')
-gender = st.sidebar.selection('select your gender',['Male','Female'])
+gender = st.sidebar.selectbox('select your gender',['Male','Female'])
 age = st.sidebar.text_input('Enter your age')
 weight = st.sidebar.text_input('Enter your weight in kgs')
 height = st.sidebar.text_input('Enter your height in cms')
@@ -38,8 +39,8 @@ if st.sidebar.button('Submit'):
 
 # Lets use the gemini model to generate the report:
 
-user_input = st.text_input('Ask me your question.')
-prompt = '''
+user_input = st.text_input('Ask me your question:')
+prompt = f'''
 <Role> You are an expert in health and wellness and has 10+ years experience in guiding people.
 <Goal> Generate the customised report adressing the problem the user has asked. Here is the question that user has asked: {user_input}:
 <Context> Here are the deatails that the user has provided.
